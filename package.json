@@ -1,14 +1,20 @@
 {
   "name": "@v1xfe-kit/source",
+  "private": true,
   "version": "0.0.0",
   "license": "MIT",
+  "author": "v0xOSS <oss-developers@vezham.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vezham/v1xFE-kit"
+  },
   "scripts": {
     "tw:migrate": "npx @tailwindcss/upgrade",
     "nx:graph": "nx graph",
     "nx:migrate:chk": "nx migrate latest",
     "nx:migrate:run": "pnpm install --no-frozen-lockfile && nx migrate --run-migrations"
   },
-  "private": true,
+  
   "dependencies": {
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -58,7 +64,9 @@
     "vite": "^6.0.0",
     "vitest": "^3.0.0"
   },
-  "workspaces": [
-    "apps/*"
-  ]
+  "engines": {
+    "pnpm": ">=10.x",
+    "node": ">=22.x"
+  },
+  "packageManager": "pnpm@10.13.1"
 }
