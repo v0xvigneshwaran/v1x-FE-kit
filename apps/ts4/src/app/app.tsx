@@ -5,7 +5,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 export function App() {
   return (
     <div>
-      <NxWelcome title="@v1x-fe-kit/ts4" />
+      <NxWelcome title="@v1xfe-kit/ts4" />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}

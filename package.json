@@ -1,8 +1,13 @@
 {
-  "name": "@v1x-fe-kit/source",
+  "name": "@v1xfe-kit/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "tw:migrate": "npx @tailwindcss/upgrade",
+    "nx:graph": "nx graph",
+    "nx:migrate:chk": "nx migrate latest",
+    "nx:migrate:run": "pnpm install --no-frozen-lockfile && nx migrate --run-migrations"
+  },
   "private": true,
   "dependencies": {
     "react": "19.0.0",
