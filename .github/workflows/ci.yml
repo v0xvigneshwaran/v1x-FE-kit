@@ -26,12 +26,14 @@ jobs:
       # - run: npx nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
 
       # Cache node_modules
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      #     cache: 'npm'
+      - name: action | node & pnpm
+        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
 
-      - run: npm ci --legacy-peer-deps
+      # - run: npm ci --legacy-peer-deps | pnpm install --strict-peer-dependencies=false
       - run: npx playwright install --with-deps
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
