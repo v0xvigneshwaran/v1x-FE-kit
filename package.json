@@ -9,6 +9,7 @@
   "license": "MIT",
   "author": "v0xOSS <oss-developers@vezham.com>",
   "scripts": {
+    "@vx/ci/build": "nx run-many -t build",
     "@vx/ci/format:check": "pnpm format:check",
     "format": "bash v/bin/cli-format.sh",
     "format:check": "prettier . --check --cache && pnpm format:pkg-check",

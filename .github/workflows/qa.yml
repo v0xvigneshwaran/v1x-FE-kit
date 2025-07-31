@@ -17,7 +17,7 @@ run-name: "${{ github.event_name == 'schedule' && 'ci(TVA): QA' || github.event_
 concurrency:
   group: qa-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-# timeout-minutes: 10
+  # timeout-minutes: 10
 
 permissions:
   checks: write
@@ -169,7 +169,3 @@ jobs:
       - name: action | nx/AI fix
         if: always()
         uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
-
-      - name: action | LOG
-        if: always()
-        uses: vezham/vx-fe-deployer/.github/actions/common/log-artifact@timeline
