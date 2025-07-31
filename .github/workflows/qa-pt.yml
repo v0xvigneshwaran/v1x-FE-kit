@@ -63,12 +63,12 @@ jobs:
         uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline # - run: npm ci --legacy-peer-deps | pnpm install --strict-peer-dependencies=false
 
       - run: npx playwright install --with-deps
+      - run: pnpm @vx/ci/format:check
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
       # When you enable task distribution, run the e2e-ci task instead of e2e
       - run: npx nx run-many -t typecheck lint test build e2e
-      - run: pnpm @vx/ci/format:check
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - run: npx nx fix-ci
