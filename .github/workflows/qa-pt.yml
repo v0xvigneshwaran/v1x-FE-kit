@@ -1,18 +1,42 @@
-name: CI
+# wjdlz/NOTE: @vx/ci
+name: QA-PT
 
 on:
+  schedule:
+    - cron: '30 22 * * 2,5' # Wed, Sat at 4am IST
+  workflow_dispatch:
   push:
-    branches:
-      - timeline
+    branches: [timeline]
+    paths:
+      - '.github/workflows/qa-pt.yml'
+      - '.changeset/**'
+      - 'packages/**'
   pull_request:
+
+run-name: "${{ github.event_name == 'schedule' && 'ci(TVA): QA' || github.event_name == 'workflow_dispatch' && 'ci(TVA): Dry Run - QA' || github.event.head_commit.message || github.event.workflow_run.head_commit.message || github.ref_name }} - by @${{ github.event_name == 'schedule' && 'vx' || github.actor || 'vx/ci' }}"
+
+concurrency:
+  group: qa-pt-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+# timeout-minutes: 10
 
 permissions:
   actions: read
   contents: read
+  # checks: write
+  # contents: write
+  # pull-requests: write
+
+env:
+  REPO: ${{ github.repository }} # inputs.GIT_REPO
+  BRANCH: ${{ github.ref_name }} # inputs.GIT_BRANCH
+  NX_NO_CLOUD: true
+  DX_KIT_NAME:
 
 jobs:
   main:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,15 +55,15 @@ jobs:
       #     node-version: 20
       #     cache: 'npm'
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
-
-      # - run: npm ci --legacy-peer-deps | pnpm install --strict-peer-dependencies=false
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline # - run: npm ci --legacy-peer-deps | pnpm install --strict-peer-dependencies=false
+      
       - run: npx playwright install --with-deps
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
       # When you enable task distribution, run the e2e-ci task instead of e2e
       - run: npx nx run-many -t lint test build e2e
+      
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - run: npx nx fix-ci
         if: always()

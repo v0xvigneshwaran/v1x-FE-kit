@@ -1,4 +1,4 @@
-# wjdlz/NOTE: @v0xci
+# wjdlz/NOTE: @vx/ci
 name: QA
 
 on:
@@ -12,7 +12,7 @@ on:
       - '.changeset/**'
       - 'packages/**'
 
-run-name: "${{ github.event_name == 'schedule' && 'ci(TVA): QA' || github.event_name == 'workflow_dispatch' && 'ci(TVA): Dry Run - QA' || github.event.head_commit.message || github.event.workflow_run.head_commit.message || github.ref_name }} - by @${{ github.event_name == 'schedule' && 'v0x' || github.actor || 'v0xci' }}"
+run-name: "${{ github.event_name == 'schedule' && 'ci(TVA): QA' || github.event_name == 'workflow_dispatch' && 'ci(TVA): Dry Run - QA' || github.event.head_commit.message || github.event.workflow_run.head_commit.message || github.ref_name }} - by @${{ github.event_name == 'schedule' && 'vx' || github.actor || 'vx/ci' }}"
 
 concurrency:
   group: qa-${{ github.workflow }}-${{ github.ref }}
@@ -27,7 +27,7 @@ permissions:
 env:
   REPO: ${{ github.repository }} # inputs.GIT_REPO
   BRANCH: ${{ github.ref_name }} # inputs.GIT_BRANCH
-  NX_NO_CLOUD: false
+  NX_NO_CLOUD: true
   DX_KIT_NAME:
 
 jobs:
@@ -36,13 +36,13 @@ jobs:
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
       - name: fork | build
         # id: build
@@ -54,77 +54,97 @@ jobs:
             exit 1
           }
 
+      - name: action | nx/AI fix
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
+
   types:
     runs-on: ubuntu-latest
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
       - name: fork | typecheck
         shell: bash
         run: |
           pnpm nx run-many -t typecheck --exclude=${{ env.DX_KIT_NAME }}
 
+      - name: action | nx/AI fix
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
+
   lint:
     runs-on: ubuntu-latest
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
       - name: fork | lint - ESLint
         shell: bash
         run: |
           pnpm nx run-many -t lint
+      
+      - name: action | nx/AI fix
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
 
   prettier:
     runs-on: ubuntu-latest
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
-      - name: fork | format - Prettier
+      - name: fork | format - prettier
         shell: bash
         run: |
-          pnpm format:check
+          pnpm @vx/ci/format:check
+
+      - name: action | nx/AI fix
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
 
   tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
       - name: fork | test - vitest
         shell: bash
         run: |
           pnpm nx run-many -t test --passWithNoTests
+
+      - name: action | nx/AI fix
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
 
   e2e:
     runs-on: ubuntu-latest
@@ -132,13 +152,13 @@ jobs:
 
     steps:
       - name: action | checkout | ${{ env.REPO }}@${{ env.BRANCH }}
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-checkout@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-checkout@timeline
         with:
           GIT_REPO: ${{ env.REPO }}
           GIT_BRANCH: ${{ env.BRANCH }}
 
       - name: action | node & pnpm
-        uses: vezham/v0xFE-deployer/.github/actions/common/setup-install@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/common/setup-install@timeline
 
       - name: fork | e2e - playwright
         shell: bash
@@ -146,6 +166,10 @@ jobs:
           npx playwright install --with-deps
           pnpm nx run-many -t e2e
 
-      - name: ci-setup | LOG
+      - name: action | nx/AI fix
         if: always()
-        uses: vezham/v0xFE-deployer/.github/actions/common/log-artifact@timeline
+        uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
+
+      - name: action | LOG
+        if: always()
+        uses: vezham/vx-fe-deployer/.github/actions/common/log-artifact@timeline
