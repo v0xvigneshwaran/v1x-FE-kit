@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           pnpm nx run-many -t lint
-      
+
       - name: action | nx/AI fix
         if: always()
         uses: vezham/vx-fe-deployer/.github/actions/nx/ai-fix@timeline
