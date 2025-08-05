@@ -1,0 +1,76 @@
+.vdevice-tab,
+.vdevice-mob,
+.vdevice-mob-sm {
+  .vapp-layout {
+    @apply px-0 pt-20 pb-20;
+  }
+
+  .vapp-layout:has(.vcontainer-sidebar),
+  .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+    @apply px-0 pt-20 pb-0;
+  }
+}
+
+.vdir-ltr.vdevice-mob-xl,
+.vdir-ltr.vdevice-mob-l {
+  .vapp-layout {
+    @apply pt-20 pl-20;
+  }
+
+  .vapp-layout:has(.vcontainer-sidebar),
+  .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+    @apply px-0 pt-20;
+  }
+}
+
+.vdir-rtl.vdevice-mob-xl,
+.vdir-rtl.vdevice-mob-l {
+  .vapp-layout {
+    @apply pt-20 pr-20;
+  }
+
+  .vapp-layout:has(.vcontainer-sidebar),
+  .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+    @apply px-0 pt-20;
+  }
+}
+
+.vmode-light .vapp-layout.bg-vcontainer-secondary {
+  background: linear-gradient(
+    180deg,
+    rgb(234, 234, 234) 20%,
+    rgb(255, 255, 255)
+  );
+
+  /* background: radial-gradient(
+      circle at 50% 50%,
+      rgb(234, 234, 234) 20%,
+      transparent 80%
+    ),
+    conic-gradient(
+      from 45deg at 50% 50%,
+      rgb(203, 204, 207) 0%,
+      rgb(234, 234, 234) 25%,
+      rgb(203, 204, 207) 50%,
+      rgb(234, 234, 234) 75%,
+      rgb(203, 204, 207) 100%
+    ); */
+}
+
+.vmode-dark .vapp-layout.bg-vcontainer-secondary {
+  background: linear-gradient(180deg, rgb(33, 36, 40) 20%, rgb(0, 0, 0));
+
+  /* background: radial-gradient(
+      circle at 50% 50%,
+      rgb(33, 36, 40) 20%,
+      transparent 80%
+    ),
+    conic-gradient(
+      from 45deg at 50% 50%,
+      rgb(16, 18, 20) 0%,
+      rgb(33, 36, 40) 25%,
+      rgb(16, 18, 20) 50%,
+      rgb(33, 36, 40) 75%,
+      rgb(16, 18, 20) 100%
+    ); */
+}

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Flattened (no nesting) */
+
+.vdevice-lap .vwrapper-app-sidebar-footer,
+.vdevice-desk .vwrapper-app-sidebar-footer,
+.vdevice-tab-l .vwrapper-app-sidebar-footer {
+  @apply flex flex-col;
+}
+
+.vdevice-lap .vwrapper-footer-card,
+.vdevice-desk .vwrapper-footer-card,
+.vdevice-tab-l .vwrapper-footer-card {
+  @apply flex w-24 flex-row flex-wrap items-center justify-center;
+}
+
+.vdevice-mob-l .vwrapper-app-sidebar-footer,
+.vdevice-mob-xl .vwrapper-app-sidebar-footer,
+.vdevice-tab .vwrapper-app-sidebar-footer,
+.vdevice-mob .vwrapper-app-sidebar-footer,
+.vdevice-mob-sm .vwrapper-app-sidebar-footer {
+  @apply flex flex-row;
+}
+
+.vdevice-mob-l .vwrapper-footer-card,
+.vdevice-mob-xl .vwrapper-footer-card,
+.vdevice-tab .vwrapper-footer-card,
+.vdevice-mob .vwrapper-footer-card,
+.vdevice-mob-sm .vwrapper-footer-card {
+  @apply flex flex-row flex-wrap items-center justify-center;
+}

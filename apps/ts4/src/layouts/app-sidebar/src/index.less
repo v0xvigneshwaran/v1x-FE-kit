@@ -1,0 +1,74 @@
+.vdevice-lap,
+.vdevice-desk,
+.vdevice-tab-l {
+  .vcontainer-sidebar {
+    @apply relative flex h-full w-full flex-col justify-between gap-2 p-2;
+
+    .vwrapper-sidebar {
+      @apply flex flex-col gap-1;
+    }
+
+    .vwrapper-sidebar-footer {
+      @apply flex items-center justify-start;
+    }
+  }
+}
+
+.vsidebar-hide.vdevice-lap,
+.vsidebar-hide.vdevice-desk,
+.vsidebar-hide.vdevice-tab-l {
+  .vcontainer-sidebar {
+    .vwrapper-sidebar {
+      @apply hidden;
+    }
+  }
+}
+
+.vdevice-tab,
+.vdevice-mob-l,
+.vdevice-mob-xl,
+.vdevice-mob,
+.vdevice-mob-sm {
+  .vcontainer-sidebar {
+    .vwrapper-sidebar {
+      display: none;
+    }
+  }
+
+  .resize-panel:has(.vcontainer-sidebar) {
+    display: contents !important;
+  }
+}
+
+/* SURESH NOTE: Direction Styles */
+.vdir-ltr.vdevice-tab,
+.vdir-ltr.vdevice-mob-l,
+.vdir-ltr.vdevice-mob-xl,
+.vdir-ltr.vdevice-mob,
+.vdir-ltr.vdevice-mob-sm {
+  .vcontainer-sidebar {
+    .vwrapper-sidebar-header {
+      @apply absolute top-4 left-4;
+    }
+
+    .vwrapper-sidebar-footer {
+      @apply absolute top-4 right-4;
+    }
+  }
+}
+
+.vdir-rtl.vdevice-tab,
+.vdir-rtl.vdevice-mob-l,
+.vdir-rtl.vdevice-mob-xl,
+.vdir-rtl.vdevice-mob,
+.vdir-rtl.vdevice-mob-sm {
+  .vcontainer-sidebar {
+    .vwrapper-sidebar-header {
+      @apply absolute top-4 right-4;
+    }
+
+    .vwrapper-sidebar-footer {
+      @apply absolute top-4 left-4;
+    }
+  }
+}

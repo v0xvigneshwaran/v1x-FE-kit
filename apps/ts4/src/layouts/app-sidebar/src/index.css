@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Flattened selectors without nesting */
+
+.vdevice-lap .vcontainer-sidebar,
+.vdevice-desk .vcontainer-sidebar,
+.vdevice-tab-l .vcontainer-sidebar {
+  @apply relative flex h-full w-full flex-col justify-between gap-2 p-2;
+}
+
+.vdevice-lap .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-desk .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-tab-l .vcontainer-sidebar .vwrapper-sidebar {
+  @apply flex flex-col gap-1;
+}
+
+.vdevice-lap .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdevice-desk .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdevice-tab-l .vcontainer-sidebar .vwrapper-sidebar-footer {
+  @apply flex items-center justify-start;
+}
+
+.vsidebar-hide.vdevice-lap .vcontainer-sidebar .vwrapper-sidebar,
+.vsidebar-hide.vdevice-desk .vcontainer-sidebar .vwrapper-sidebar,
+.vsidebar-hide.vdevice-tab-l .vcontainer-sidebar .vwrapper-sidebar {
+  @apply hidden;
+}
+
+.vdevice-tab .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-mob-l .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-mob-xl .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-mob .vcontainer-sidebar .vwrapper-sidebar,
+.vdevice-mob-sm .vcontainer-sidebar .vwrapper-sidebar {
+  display: none;
+}
+
+.resize-panel:has(.vcontainer-sidebar) {
+  display: contents !important;
+}
+
+/* Direction Styles */
+
+.vdir-ltr.vdevice-tab .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-ltr.vdevice-mob-l .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-ltr.vdevice-mob-xl .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-ltr.vdevice-mob .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-ltr.vdevice-mob-sm .vcontainer-sidebar .vwrapper-sidebar-header {
+  @apply absolute top-4 left-4;
+}
+
+.vdir-ltr.vdevice-tab .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-ltr.vdevice-mob-l .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-ltr.vdevice-mob-xl .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-ltr.vdevice-mob .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-ltr.vdevice-mob-sm .vcontainer-sidebar .vwrapper-sidebar-footer {
+  @apply absolute top-4 right-4;
+}
+
+.vdir-rtl.vdevice-tab .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-rtl.vdevice-mob-l .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-rtl.vdevice-mob-xl .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-rtl.vdevice-mob .vcontainer-sidebar .vwrapper-sidebar-header,
+.vdir-rtl.vdevice-mob-sm .vcontainer-sidebar .vwrapper-sidebar-header {
+  @apply absolute top-4 right-4;
+}
+
+.vdir-rtl.vdevice-tab .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-rtl.vdevice-mob-l .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-rtl.vdevice-mob-xl .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-rtl.vdevice-mob .vcontainer-sidebar .vwrapper-sidebar-footer,
+.vdir-rtl.vdevice-mob-sm .vcontainer-sidebar .vwrapper-sidebar-footer {
+  @apply absolute top-4 left-4;
+}

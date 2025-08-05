@@ -14,6 +14,17 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.85.0",
+    "@vezham/hooks": "^0.3.3",
+    "@vezham/icons": "^0.3.3",
+    "@vezham/react": "^0.3.3",
+    "@vezham/react-utils": "^0.3.3",
+    "@vezham/shared-types": "^0.3.3",
+    "@vezham/start": "^0.3.3",
+    "@vezham/templates": "^0.3.3",
+    "@vezham/theme": "^0.3.3",
+    "@vezham/use-logger": "^0.3.3",
+    "@vezham/v-atoms": "^0.3.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-router-dom": "6.29.0"

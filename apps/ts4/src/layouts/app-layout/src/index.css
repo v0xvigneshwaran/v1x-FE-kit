@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Valid plain CSS (flattened nesting) */
+
+.vdevice-tab .vapp-layout,
+.vdevice-mob .vapp-layout,
+.vdevice-mob-sm .vapp-layout {
+  @apply px-0 pt-20 pb-20;
+}
+
+.vdevice-tab .vapp-layout:has(.vcontainer-sidebar),
+.vdevice-tab .vapp-layout:has(.vwrapper-sidebar-empty-menu),
+.vdevice-mob .vapp-layout:has(.vcontainer-sidebar),
+.vdevice-mob .vapp-layout:has(.vwrapper-sidebar-empty-menu),
+.vdevice-mob-sm .vapp-layout:has(.vcontainer-sidebar),
+.vdevice-mob-sm .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+  @apply px-0 pt-20 pb-0;
+}
+
+.vdir-ltr.vdevice-mob-xl .vapp-layout,
+.vdir-ltr.vdevice-mob-l .vapp-layout {
+  @apply pt-20 pl-20;
+}
+
+.vdir-ltr.vdevice-mob-xl .vapp-layout:has(.vcontainer-sidebar),
+.vdir-ltr.vdevice-mob-xl .vapp-layout:has(.vwrapper-sidebar-empty-menu),
+.vdir-ltr.vdevice-mob-l .vapp-layout:has(.vcontainer-sidebar),
+.vdir-ltr.vdevice-mob-l .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+  @apply px-0 pt-20;
+}
+
+.vdir-rtl.vdevice-mob-xl .vapp-layout,
+.vdir-rtl.vdevice-mob-l .vapp-layout {
+  @apply pt-20 pr-20;
+}
+
+.vdir-rtl.vdevice-mob-xl .vapp-layout:has(.vcontainer-sidebar),
+.vdir-rtl.vdevice-mob-xl .vapp-layout:has(.vwrapper-sidebar-empty-menu),
+.vdir-rtl.vdevice-mob-l .vapp-layout:has(.vcontainer-sidebar),
+.vdir-rtl.vdevice-mob-l .vapp-layout:has(.vwrapper-sidebar-empty-menu) {
+  @apply px-0 pt-20;
+}
+
+.vmode-light .vapp-layout.bg-vcontainer-secondary {
+  background: linear-gradient(
+    180deg,
+    rgb(234, 234, 234) 20%,
+    rgb(255, 255, 255)
+  );
+}
+
+.vmode-dark .vapp-layout.bg-vcontainer-secondary {
+  background: linear-gradient(180deg, rgb(33, 36, 40) 20%, rgb(0, 0, 0));
+}
